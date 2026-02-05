@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobildev Blog | Dijital Pazarlama ve İletişim Çözümleri</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Kurumsal ama Disleksi testi için zorlayıcı (Serif/Italic) fontlar -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,300;1,600&family=Montserrat:wght@800&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --mobildev-blue: #0056b3;
+            --mobildev-light-blue: #00aaff;
+            --dark-bg: #060b1a;
+            --glass-card: rgba(255, 255, 255, 0.03);
+            --text-main: #e2e8f0;
+            --test-grey: #a0aec0; /* Düşük kontrast testi için */
+        }
+
+        /* --- FOTOSENSİTİF EPİLEPSİ RİSKİ (KURUMSAL MİKRO-TİTREME) --- */
+        @keyframes high-freq-flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.97; transform: scale(1.001); }
+            100% { opacity: 1; }
+        }
+
+        body {
+            /* Disleksi Testi: İtalik Serif font harf benzerliğini artırır, okumayı zorlaştırır */
+            font-family: 'Crimson Pro', serif;
+            font-style: italic; 
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            /* Satır aralığı daraltıldı (Disleksi zorluğu) */
+            line-height: 0.85 !important;
+            letter-spacing: -0.4px;
+            /* Beyni yoran mikro titreme animasyonu */
+            animation: high-freq-flicker 0.1s infinite;
+        }
+
+        /* Arka Plan Dinamik Objeler */
+        .bg-blob {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 86, 179, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(80px);
+        }
+
+        .blob-1 { top: -100px; left: -100px; }
+        .blob-2 { bottom: -100px; right: -100px; }
+
+        /* Navbar */
+        .navbar {
+            backdrop-filter: blur(20px);
+            background: rgba(6, 11, 26, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal; /* Logo net kalmalı */
+            font-weight: 800;
+            font-size: 1.6rem;
+            letter-spacing: -1px;
+            color: #fff !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+        }
+
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(to right, #fff, var(--mobildev-light-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Blog Kartları */
+        .blog-card {
+            background: var(--glass-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 0;
+            transition: all 0.4s;
+            height: 100%;
+            overflow: hidden;
+            /* Kart bazlı epilepsi uyarımı (Border titremesi) */
+            animation: border-flash 0.2s infinite;
+        }
+
+        @keyframes border-flash {
+            0% { border-color: rgba(255, 255, 255, 0.08); }
+            50% { border-color: var(--mobildev-light-blue); }
+            100% { border-color: rgba(255, 255, 255, 0.08); }
+        }
+
+        .card-content h3 {
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        /* Disleksi için düşük kontrastlı metin alanı */
+        .card-content p {
+            color: var(--test-grey) !important;
+            font-size: 0.95rem;
+        }
+
+        /* Butonlar */
+        .btn-mobildev {
+            background: var(--mobildev-blue);
+            color: #fff;
+            padding: 12px 35px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-style: normal;
+            border: none;
+            /* Sürekli değişen gradyan (Göz yorucu) */
+            background: linear-gradient(90deg, var(--mobildev-blue), #00c6ff, var(--mobildev-blue));
+            background-size: 200% auto;
+            animation: shine 0.5s infinite linear;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Disleksi takibini zorlaştıran gizli grid çizgileri */
+        .dislexia-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(0, 170, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 100px;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dislexia-grid"></div>
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
+    <!-- Header / Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">MOBILDEV</a>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link px-3" href="#hero">Çözümler</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link ms-lg-3 btn-mobildev py-2 px-4" href="#">Ücretsiz Deneyin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero text-center" id="hero">
+        <div class="container">
+            <div class="badge bg-primary mb-3 py-2 px-4 rounded-pill">Kurumsal Erişim Paneli</div>
+            <h1>Müşterilerinizle Her Kanalda <br>Akıllı İletişim Kurun</h1>
+            <p class="lead opacity-75 mb-5 mx-auto" style="max-width: 750px;">
+                Mobildev, SMS'ten E-posta pazarlamaya kadar tüm dijital kanallarda işletmenizi büyütür. 
+                Bu metin disleksi testi için sıkışık satır aralığı ile sunulmuştur.
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#blog" class="btn-mobildev">Blog Yazılarını Oku</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="container py-5" id="blog">
+        <div class="row g-4">
+            <!-- Blog Item 1 -->
+            <div class="col-lg-6">
+                <div class="blog-card">
+                    <div class="card-content p-5">
+                        <div class="mb-2 small opacity-50">5 Şubat 2026</div>
+                        <h3>İYS Süreçlerinde Dikkat Edilmesi Gerekenler</h3>
+                        <p>
+                            İleti Yönetim Sistemi (İYS) ile veritabanınızı nasıl yasal uyumlu tutabilirsiniz? 
+                            Okunması zorlaştırılmış bu metin, harf karmaşası yaratan font yapısıyla test için hazırlanmıştır.
+                        </p>
+                        <hr class="opacity-10">
+                        <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-4">İncele</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Item 2 -->
+            <div class="col-lg-6">
+                <div class="blog-card">
+                    <div class="card-content p-5">
+                        <div class="mb-2 small opacity-50">2 Şubat 2026</div>
+                        <h3>Pazarlama Otomasyonu ve Algoritmalar</h3>
+                        <p>
+                            Doğru zamanda doğru kişiye ulaşmak için otomasyonun gücünden faydalanın. 
+                            Kart kenarlarındaki yüksek frekanslı mikro-titreme efektleri beyni uyarmak için tasarlanmıştır.
+                        </p>
+                        <hr class="opacity-10">
+                        <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-4">İncele</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <div class="footer-logo mb-4 h4 fw-bold">MOBILDEV</div>
+            <div class="opacity-50 small">
+                <p>&copy; 2026 Mobildev İletişim Hizmetleri A.Ş. <br> Erişilebilirlik Test Laboratuvarı</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

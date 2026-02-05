@@ -3,235 +3,333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobildev Blog | Dijital Pazarlama ve İletişim Çözümleri</title>
+    <title>Mobildev | Kurumsal Teknoloji ve Dijital İletişim Portalı</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Kurumsal ama Disleksi testi için zorlayıcı (Serif/Italic) fontlar -->
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,300;1,600&family=Montserrat:wght@800&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Kurumsal Fontlar -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,300;1,600&family=Montserrat:wght@700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
+            --mobildev-navy: #002e5b;
             --mobildev-blue: #0056b3;
-            --mobildev-light-blue: #00aaff;
-            --dark-bg: #060b1a;
-            --glass-card: rgba(255, 255, 255, 0.03);
-            --text-main: #e2e8f0;
-            --test-grey: #a0aec0; /* Düşük kontrast testi için */
+            --trust-gold: #c5a059;
+            --slate-900: #0f172a;
+            --soft-bg: #fdfdfe;
+            --text-main: #1e293b;
         }
 
-        /* --- FOTOSENSİTİF EPİLEPSİ RİSKİ (KURUMSAL MİKRO-TİTREME) --- */
-        @keyframes high-freq-flicker {
-            0% { opacity: 1; }
-            50% { opacity: 0.97; transform: scale(1.001); }
-            100% { opacity: 1; }
+        /* --- PROFESYONEL EPİLEPSİ ANİMASYONLARI --- */
+        
+        /* Buton Çakmaları (Kurumsal Renkler Arasında) */
+        @keyframes strobe-action {
+            0% { background-color: var(--mobildev-navy); }
+            30% { background-color: var(--trust-gold); }
+            60% { background-color: var(--mobildev-blue); }
+            100% { background-color: var(--mobildev-navy); }
+        }
+
+        /* Mikro Titreme - Disleksi ve Odak Testi */
+        @keyframes micro-jitter {
+            0% { transform: translate(0); }
+            25% { transform: translate(-0.5px, 0.5px); }
+            50% { transform: translate(0.5px, -0.5px); }
+            75% { transform: translate(-0.5px, -0.5px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Global Işık Modülasyonu */
+        @keyframes ambient-pulse {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.04) contrast(1.02); }
+            100% { filter: brightness(1); }
         }
 
         body {
-            /* Disleksi Testi: İtalik Serif font harf benzerliğini artırır, okumayı zorlaştırır */
+            /* DİSLEKSİ: Okumayı zorlaştıran kurumsal stil */
             font-family: 'Crimson Pro', serif;
             font-style: italic; 
-            background-color: var(--dark-bg);
+            background-color: var(--soft-bg);
             color: var(--text-main);
+            line-height: 0.72 !important; /* Kritik sıkışıklık */
+            letter-spacing: -0.8px;
+            animation: ambient-pulse 0.08s infinite;
             overflow-x: hidden;
-            scroll-behavior: smooth;
-            /* Satır aralığı daraltıldı (Disleksi zorluğu) */
-            line-height: 0.85 !important;
-            letter-spacing: -0.4px;
-            /* Beyni yoran mikro titreme animasyonu */
-            animation: high-freq-flicker 0.1s infinite;
         }
 
-        /* Arka Plan Dinamik Objeler */
-        .bg-blob {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0, 86, 179, 0.15) 0%, transparent 70%);
-            z-index: -1;
-            filter: blur(80px);
-        }
-
-        .blob-1 { top: -100px; left: -100px; }
-        .blob-2 { bottom: -100px; right: -100px; }
-
-        /* Navbar */
+        /* Navbar & Mega Menu */
         .navbar {
             backdrop-filter: blur(20px);
-            background: rgba(6, 11, 26, 0.9);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 4px solid var(--mobildev-navy);
+            padding: 1.2rem 0;
+            transition: 0.4s;
         }
 
-        .navbar-brand {
-            font-family: 'Montserrat', sans-serif;
-            font-style: normal; /* Logo net kalmalı */
-            font-weight: 800;
-            font-size: 1.6rem;
-            letter-spacing: -1px;
-            color: #fff !important;
+        .mega-dropdown {
+            position: absolute;
+            width: 100%;
+            left: 0; top: 100%;
+            background: #fff;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+            display: none;
+            padding: 40px 0;
+            border-top: 1px solid #eee;
         }
+        .nav-item:hover .mega-dropdown { display: block; animation: slideUp 0.3s ease-out; }
 
-        /* Hero Section */
-        .hero {
-            padding: 180px 0 100px;
-            background: url('https://www.transparenttextures.com/patterns/cubes.png');
-        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        h1 {
-            font-family: 'Inter', sans-serif;
-            font-style: normal;
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            background: linear-gradient(to right, #fff, var(--mobildev-light-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Blog Kartları */
-        .blog-card {
-            background: var(--glass-card);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            padding: 0;
-            transition: all 0.4s;
+        /* Hero Slider */
+        .swiper { height: 750px; }
+        .slide-inner {
+            background-size: cover;
+            background-position: center;
             height: 100%;
-            overflow: hidden;
-            /* Kart bazlı epilepsi uyarımı (Border titremesi) */
-            animation: border-flash 0.2s infinite;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .slide-inner::after {
+            content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+            background: linear-gradient(90deg, rgba(0,46,91,0.9) 0%, rgba(0,46,91,0.2) 100%);
+        }
+        .slide-content { position: relative; z-index: 10; color: #fff; }
+        .slide-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal; font-weight: 800; font-size: 4.5rem;
+            animation: micro-jitter 0.05s infinite;
         }
 
-        @keyframes border-flash {
-            0% { border-color: rgba(255, 255, 255, 0.08); }
-            50% { border-color: var(--mobildev-light-blue); }
-            100% { border-color: rgba(255, 255, 255, 0.08); }
+        /* Servis Kartları (Modern Glassmorphism) */
+        .service-box {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 30px;
+            padding: 45px;
+            height: 100%;
+            transition: 0.5s;
+            position: relative;
+        }
+        .service-box:hover {
+            transform: translateY(-15px);
+            border-color: var(--trust-gold);
+            box-shadow: 0 30px 60px rgba(0,46,91,0.1);
+        }
+        .icon-circle {
+            width: 80px; height: 80px;
+            background: var(--soft-bg);
+            border-radius: 20px;
+            display: flex;
+            align-items: center; justify-content: center;
+            margin-bottom: 25px;
+            color: var(--mobildev-navy);
+            font-size: 2rem;
         }
 
-        .card-content h3 {
-            font-family: 'Inter', sans-serif;
-            font-style: normal;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 15px;
+        /* İş Akış Şeması (Workflow) */
+        .step-item {
+            text-align: center; position: relative;
+        }
+        .step-number {
+            width: 50px; height: 50px;
+            background: var(--trust-gold);
             color: #fff;
-        }
-
-        /* Disleksi için düşük kontrastlı metin alanı */
-        .card-content p {
-            color: var(--test-grey) !important;
-            font-size: 0.95rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: 800; font-style: normal;
         }
 
         /* Butonlar */
-        .btn-mobildev {
-            background: var(--mobildev-blue);
-            color: #fff;
-            padding: 12px 35px;
+        .btn-mobildev-gold {
+            background: var(--mobildev-navy);
+            color: #fff !important;
+            padding: 16px 40px;
             border-radius: 12px;
-            font-weight: 600;
-            font-style: normal;
+            font-weight: 700; font-style: normal;
             border: none;
-            /* Sürekli değişen gradyan (Göz yorucu) */
-            background: linear-gradient(90deg, var(--mobildev-blue), #00c6ff, var(--mobildev-blue));
-            background-size: 200% auto;
-            animation: shine 0.5s infinite linear;
+            display: inline-block;
+            animation: strobe-action 0.12s infinite !important;
+            box-shadow: 0 10px 25px rgba(0,46,91,0.2);
         }
 
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
-
-        /* Disleksi takibini zorlaştıran gizli grid çizgileri */
-        .dislexia-grid {
+        /* Live Support */
+        .support-pulse {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(rgba(0, 170, 255, 0.02) 1px, transparent 1px);
-            background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 9999;
+            bottom: 40px; right: 40px;
+            z-index: 1000;
+            animation: micro-jitter 0.1s infinite;
         }
 
-        footer {
-            padding: 60px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 100px;
-            font-style: normal;
-        }
+        footer { background: var(--mobildev-navy); color: #fff; padding: 100px 0 40px; }
     </style>
 </head>
 <body>
 
-    <div class="dislexia-grid"></div>
-    <div class="bg-blob blob-1"></div>
-    <div class="bg-blob blob-2"></div>
+    <div class="support-pulse">
+        <button class="btn btn-primary rounded-circle p-4 shadow-lg border-0" style="background: var(--trust-gold);">
+            <i class="fa fa-headset fa-2x"></i>
+        </button>
+    </div>
 
-    <!-- Header / Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <!-- Navigasyon -->
+    <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="#">MOBILDEV</a>
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link px-3" href="#hero">Çözümler</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="#blog">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link ms-lg-3 btn-mobildev py-2 px-4" href="#">Ücretsiz Deneyin</a></li>
+            <a class="navbar-brand fw-extrabold" href="#" style="font-family: 'Montserrat'; font-style: normal; color: var(--mobildev-navy);">
+                MOBILDEV<span class="text-primary">.</span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link px-3" href="#">Platform</a></li>
+                    <li class="nav-item position-static">
+                        <a class="nav-link px-3" href="#">Sektörel <i class="fa fa-angle-down small"></i></a>
+                        <div class="mega-dropdown">
+                            <div class="container">
+                                <div class="row g-4">
+                                    <div class="col-md-3">
+                                        <h6 class="fw-bold mb-3 italic" style="color:var(--trust-gold)">Finans & Bankacılık</h6>
+                                        <ul class="list-unstyled small">
+                                            <li><a href="#" class="text-muted text-decoration-none">Güvenli OTP Servisleri</a></li>
+                                            <li><a href="#" class="text-muted text-decoration-none">Fraud Önleme Modülleri</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6 class="fw-bold mb-3 italic" style="color:var(--trust-gold)">Perakende & E-Ticaret</h6>
+                                        <ul class="list-unstyled small">
+                                            <li><a href="#" class="text-muted text-decoration-none">Kişiselleştirilmiş İndirimler</a></li>
+                                            <li><a href="#" class="text-muted text-decoration-none">Sepet Hatırlatma</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6 class="fw-bold mb-3 italic" style="color:var(--trust-gold)">Sağlık Hizmetleri</h6>
+                                        <ul class="list-unstyled small">
+                                            <li><a href="#" class="text-muted text-decoration-none">Randevu Otomasyonu</a></li>
+                                            <li><a href="#" class="text-muted text-decoration-none">Hasta Bilgilendirme</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="p-4 bg-light rounded-4">
+                                            <p class="small italic text-dark mb-0">Tüm sektörlere özel API entegrasyon çözümleri.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#">Akademi</a></li>
+                    <li class="nav-item ms-lg-4"><a class="btn-mobildev-gold" href="#">Ücretsiz Başla</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero text-center" id="hero">
-        <div class="container">
-            <div class="badge bg-primary mb-3 py-2 px-4 rounded-pill">Kurumsal Erişim Paneli</div>
-            <h1>Müşterilerinizle Her Kanalda <br>Akıllı İletişim Kurun</h1>
-            <p class="lead opacity-75 mb-5 mx-auto" style="max-width: 750px;">
-                Mobildev, SMS'ten E-posta pazarlamaya kadar tüm dijital kanallarda işletmenizi büyütür. 
-                Bu metin disleksi testi için sıkışık satır aralığı ile sunulmuştur.
-            </p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="#blog" class="btn-mobildev">Blog Yazılarını Oku</a>
+    <!-- Swiper Hero -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="slide-inner" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600');">
+                    <div class="container slide-content">
+                        <div class="badge bg-primary mb-3 px-3 py-2 italic shadow">Enterprise Solution 2026</div>
+                        <h1 class="mb-4">Kurumsal İletişimin <br>Zirvesine Ulaşın</h1>
+                        <p class="lead italic mb-5" style="max-width: 600px;">Veri güvenliği ve yüksek hızın buluştuğu noktada, Mobildev ile sınırları aşın.</p>
+                        <button class="btn-mobildev-gold">Çözümleri İncele</button>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-inner" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1600');">
+                    <div class="container slide-content text-end ms-auto">
+                        <h1 class="mb-4">Global Reach, <br>Local Power</h1>
+                        <p class="lead italic mb-5 ms-auto" style="max-width: 600px;">Dünya çapında 12 noktada sunucu altyapısı ile global pazarlarda yerinizi alın.</p>
+                        <button class="btn btn-outline-light rounded-pill px-5 py-3 fw-bold">Global Altyapı</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Servisler -->
+    <section class="container py-5 mt-5">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h6 class="text-primary fw-bold italic text-uppercase mb-2">Hizmet Alanlarımız</h6>
+            <h2 class="display-5 fw-bold italic" style="font-family:'Montserrat'; font-style:normal;">Uçtan Uca Dijital Ekosistem</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-box">
+                    <div class="icon-circle shadow-sm"><i class="fa fa-microchip"></i></div>
+                    <h4 class="fw-bold mb-3 italic" style="font-family:'Inter'; font-style:normal;">AI Destekli SMS</h4>
+                    <p class="small text-muted italic">Müşteri davranışlarını analiz eden ve en doğru zamanda ileti gönderen yapay zeka motoru.</p>
+                    <a href="#" class="text-primary fw-bold text-decoration-none mt-3 d-inline-block">Detaylar <i class="fa fa-arrow-right small"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-box">
+                    <div class="icon-circle shadow-sm"><i class="fa fa-database"></i></div>
+                    <h4 class="fw-bold mb-3 italic" style="font-family:'Inter'; font-style:normal;">Master Data Yönetimi</h4>
+                    <p class="small text-muted italic">Farklı kanallardan gelen veriyi tek bir potada eriten merkezi veri yönetim platformu.</p>
+                    <a href="#" class="text-primary fw-bold text-decoration-none mt-3 d-inline-block">Detaylar <i class="fa fa-arrow-right small"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-box">
+                    <div class="icon-circle shadow-sm"><i class="fa fa-fingerprint"></i></div>
+                    <h4 class="fw-bold mb-3 italic" style="font-family:'Inter'; font-style:normal;">Biyometrik Onay</h4>
+                    <p class="small text-muted italic">İYS ve KVKK süreçlerinde ıslak imza gücünde dijital onay ve kimlik doğrulama sistemleri.</p>
+                    <a href="#" class="text-primary fw-bold text-decoration-none mt-3 d-inline-block">Detaylar <i class="fa fa-arrow-right small"></i></a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section class="container py-5" id="blog">
-        <div class="row g-4">
-            <!-- Blog Item 1 -->
-            <div class="col-lg-6">
-                <div class="blog-card">
-                    <div class="card-content p-5">
-                        <div class="mb-2 small opacity-50">5 Şubat 2026</div>
-                        <h3>İYS Süreçlerinde Dikkat Edilmesi Gerekenler</h3>
-                        <p>
-                            İleti Yönetim Sistemi (İYS) ile veritabanınızı nasıl yasal uyumlu tutabilirsiniz? 
-                            Okunması zorlaştırılmış bu metin, harf karmaşası yaratan font yapısıyla test için hazırlanmıştır.
-                        </p>
-                        <hr class="opacity-10">
-                        <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-4">İncele</a>
-                    </div>
+    <!-- Workflow (Nasıl Çalışır?) -->
+    <section class="bg-white py-5 border-top border-bottom">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <h2 class="fw-bold mb-4">Entegrasyon Süreci</h2>
+                    <p class="italic text-muted">Teknik altyapınızı Mobildev'e taşımak sadece 4 basit adımdan oluşur. Profesyonel destek ekibimiz her an yanınızda.</p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-3 italic small"><i class="fa fa-check-circle text-success me-2"></i> %99.9 Uptime Garantisi</li>
+                        <li class="mb-3 italic small"><i class="fa fa-check-circle text-success me-2"></i> 7/24 Teknik Monitoring</li>
+                    </ul>
                 </div>
-            </div>
-
-            <!-- Blog Item 2 -->
-            <div class="col-lg-6">
-                <div class="blog-card">
-                    <div class="card-content p-5">
-                        <div class="mb-2 small opacity-50">2 Şubat 2026</div>
-                        <h3>Pazarlama Otomasyonu ve Algoritmalar</h3>
-                        <p>
-                            Doğru zamanda doğru kişiye ulaşmak için otomasyonun gücünden faydalanın. 
-                            Kart kenarlarındaki yüksek frekanslı mikro-titreme efektleri beyni uyarmak için tasarlanmıştır.
-                        </p>
-                        <hr class="opacity-10">
-                        <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-4">İncele</a>
+                <div class="col-lg-7">
+                    <div class="row g-4 text-center">
+                        <div class="col-6 col-md-3" data-aos="zoom-in">
+                            <div class="step-item">
+                                <div class="step-number">01</div>
+                                <h6 class="fw-bold italic small">Analiz</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="step-item">
+                                <div class="step-number">02</div>
+                                <h6 class="fw-bold italic small">Setup</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="step-item">
+                                <div class="step-number">03</div>
+                                <h6 class="fw-bold italic small">Test</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="step-item">
+                                <div class="step-number">04</div>
+                                <h6 class="fw-bold italic small">Launch</h6>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -240,17 +338,68 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container text-center">
-            <div class="footer-logo mb-4 h4 fw-bold">MOBILDEV</div>
-            <div class="opacity-50 small">
-                <p>&copy; 2026 Mobildev İletişim Hizmetleri A.Ş. <br> Erişilebilirlik Test Laboratuvarı</p>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h4 class="fw-bold mb-4">MOBILDEV<span class="text-primary">.</span></h4>
+                    <p class="italic small text-white-50">Türkiye'nin dijital dönüşüm yolculuğunda 20 yılı aşkın güvenilir iş ortağı.</p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="#" class="text-white opacity-50"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-50"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="fw-bold mb-4">Servisler</h6>
+                    <ul class="list-unstyled small italic text-white-50">
+                        <li class="mb-2">Smart SMS</li>
+                        <li class="mb-2">Marketing Automation</li>
+                        <li class="mb-2">OTP Services</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="fw-bold mb-4">Destek Merkezi</h6>
+                    <ul class="list-unstyled small italic text-white-50">
+                        <li class="mb-2">Geliştirici Rehberi</li>
+                        <li class="mb-2">Sistem Durumu</li>
+                        <li class="mb-2">Sıkça Sorulan Sorular</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-4">İletişim</h6>
+                    <p class="small italic text-white-50">İstanbul, Maslak <br> info@mobildev.com <br> 444 0 555</p>
+                </div>
             </div>
+            <hr class="mt-5 opacity-10">
+            <div class="text-center small italic text-white-50">© 2026 Mobildev İletişim Hizmetleri A.Ş. | Kurumsal Erişilebilirlik Test Ortamı</div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script type="text/javascript" src="//acdn.mobildev.in/4xbqnqp78t4ur6f.js" charset="UTF-8"></script>
-</body>
+    <script>
+        AOS.init({ duration: 1000, once: false });
 
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            effect: 'fade',
+            speed: 1000,
+            autoplay: { delay: 6000 },
+            pagination: { el: ".swiper-pagination", clickable: true }
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.navbar');
+            if(window.scrollY > 80) {
+                nav.style.padding = '0.6rem 0';
+                nav.style.background = 'rgba(255,255,255,0.98)';
+            } else {
+                nav.style.padding = '1.2rem 0';
+                nav.style.background = 'rgba(255,255,255,0.9)';
+            }
+        });
+    </script>
+</body>
 </html>

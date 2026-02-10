@@ -2,303 +2,306 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <!-- WCAG ERROR: Kullanıcının zoom yapması engellendi (Kritik Hata) -->
+    <!-- WCAG ERROR: Zoom kısıtlaması (Görme engelliler için bariyer) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mobildev | Kurumsal İletişim ve Pazarlama Çözümleri</title>
+    <title>Mobildev Ekosistem | ACCESS, Infomize, Acil.care & MDQ</title>
     
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@800&family=Crimson+Pro:ital,wght@1,400&display=swap" rel="stylesheet">
-    <!-- AOS Animation CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&family=Space+Grotesk:wght@700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
             --mobildev-blue: #0056b3;
-            --mobildev-light-blue: #00aaff;
-            --dark-bg: #060b1a;
-            --glass-card: rgba(255, 255, 255, 0.03);
-            --text-main: #e2e8f0;
-            --low-contrast-text: #2d3748; /* WCAG ERROR: Koyu arka planda çok koyu metin (Okunamaz) */
+            --access-accent: #00f2ff;
+            --infomize-orange: #ff6b00;
+            --acil-red: #ff3b3b;
+            --mdq-purple: #8e44ad;
+            --dark-bg: #030712;
+            --text-dim: #4b5563; /* WCAG FAIL: Kontrast hatası */
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
-        /* --- EPİLEPSİ & DİKKAT TESTİ (SOFT LEVEL) --- */
-        @keyframes soft-pulse {
-            0% { opacity: 1; filter: brightness(1); }
-            50% { opacity: 0.9; filter: brightness(1.2); }
-            100% { opacity: 1; filter: brightness(1); }
+        /* --- DEHB/EPİLEPSİ TETİKLEYİCİ ANİMASYONLAR --- */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 5px rgba(0, 242, 255, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(0, 242, 255, 0.5); }
+            100% { box-shadow: 0 0 5px rgba(0, 242, 255, 0.2); }
         }
 
-        @keyframes drift-background {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes drift {
+            from { background-position: 0% 0%; }
+            to { background-position: 100% 100%; }
         }
 
-        * {
-            /* WCAG ERROR: Klavye odağını yok et (Focus Visible Fail) */
-            outline: none !important;
-        }
+        * { outline: none !important; }
 
         body {
+            background: var(--dark-bg);
+            background-image: radial-gradient(circle at 50% 50%, #0a1128 0%, #030712 100%);
+            color: #f3f4f6;
             font-family: 'Poppins', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-main);
+            line-height: 1.2; 
             overflow-x: hidden;
-            scroll-behavior: smooth;
-            /* Yavaş ve sürekli renk değişimi (Basit seviye uyarıcı) */
-            background: linear-gradient(-45deg, #060b1a, #0a192f, #060b1a, #002e5b);
-            background-size: 400% 400%;
-            animation: drift-background 15s ease infinite;
         }
 
-        /* Navbar */
+        /* --- ACCESS WIDGET SİMÜLASYONU --- */
+        .access-widget-trigger {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--mobildev-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10000;
+            animation: pulse-glow 3s infinite;
+        }
+
+        /* --- NAVBAR --- */
         .navbar {
-            backdrop-filter: blur(20px);
-            background: rgba(6, 11, 26, 0.85);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+            background: rgba(3, 7, 18, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 20px 0;
         }
 
         .navbar-brand {
-            font-family: 'Montserrat', sans-serif;
             font-weight: 800;
-            color: #fff !important;
             letter-spacing: -1px;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Hero Section */
+        /* --- HERO --- */
         .hero {
-            padding: 160px 0 80px;
+            padding: 180px 0 100px;
             position: relative;
         }
 
         .hero h1 {
-            font-size: 3.8rem;
-            font-weight: 700;
-            line-height: 1; /* WCAG ERROR: Çok sıkışık satır (Disleksi Zorluğu) */
-            margin-bottom: 25px;
-            background: linear-gradient(to right, #fff, var(--mobildev-light-blue));
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #fff, var(--access-accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
         }
 
-        /* Blog Kartları */
-        .blog-card {
-            background: var(--glass-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        /* --- PRODUCT CARDS --- */
+        .product-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 20px;
-            padding: 40px;
-            height: 100%;
+            padding: 30px;
             transition: 0.4s;
-            /* Hafif parlama animasyonu */
-            animation: soft-pulse 4s infinite ease-in-out;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.06);
-            border-color: var(--mobildev-light-blue);
-        }
-
-        /* WCAG ERROR: Düşük kontrastlı metin bloğu */
-        .dislexia-text {
-            font-family: 'Crimson Pro', serif;
-            font-style: italic;
-            color: var(--low-contrast-text); /* Koyu lacivert üstüne koyu gri (Kritik Hata) */
-            line-height: 0.8;
-            letter-spacing: -0.5px;
-            text-align: justify;
-        }
-
-        /* Butonlar */
-        .btn-mobildev {
-            background: var(--mobildev-blue);
-            color: #fff;
-            padding: 14px 38px;
-            border-radius: 10px;
-            font-weight: 600;
-            border: none;
-            transition: 0.3s;
+            height: 100%;
             position: relative;
             overflow: hidden;
-            z-index: 1;
         }
 
-        .btn-mobildev::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 0; height: 100%;
-            background: var(--mobildev-light-blue);
-            transition: 0.4s;
-            z-index: -1;
+        .product-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.07);
         }
 
-        .btn-mobildev:hover::after {
-            width: 100%;
-        }
+        .product-card.infomize { border-top: 3px solid var(--infomize-orange); }
+        .product-card.acil { border-top: 3px solid var(--acil-red); }
+        .product-card.mdq { border-top: 3px solid var(--mdq-purple); }
 
-        /* Form Elemanları (WCAG TEST) */
-        .form-control-custom {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            color: #fff;
-            padding: 15px;
-            width: 100%;
-        }
-
-        /* Footer */
-        footer {
-            padding: 80px 0 40px;
-            background: rgba(0,0,0,0.3);
-            margin-top: 100px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .footer-link {
-            color: rgba(255,255,255,0.4);
-            text-decoration: none;
+        /* --- ERİŞİLEMEZLİK ÖRNEĞİ (DİSLEKSİ) --- */
+        .fail-text-box {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dim);
+            text-align: justify;
+            letter-spacing: -0.6px;
             font-size: 0.9rem;
-            transition: 0.3s;
+            line-height: 0.9;
         }
 
-        .footer-link:hover {
-            color: var(--mobildev-light-blue);
+        .badge-new {
+            font-size: 10px;
+            background: var(--access-accent);
+            color: black;
+            padding: 2px 8px;
+            border-radius: 4px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .btn-mobildev {
+            background: var(--mobildev-blue);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .floating-blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--mobildev-blue);
+            filter: blur(100px);
+            opacity: 0.1;
+            z-index: -1;
         }
     </style>
 </head>
 <body>
 
+    <div class="floating-blob" style="top: 10%; right: 10%;"></div>
+    <div class="floating-blob" style="bottom: 20%; left: 10%;"></div>
+
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">MOBILDEV</a>
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link px-3" href="#">Ürünler</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="#">Çözümler</a></li>
-                    <li class="nav-item ms-lg-4">
-                        <div class="btn-mobildev" style="cursor: pointer;">Giriş Yap</div>
-                    </li>
-                </ul>
+            <div class="ms-auto">
+                <a href="#" class="btn-mobildev">Bize Ulaşın</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero -->
-    <section class="hero text-center" id="home">
+    <section class="hero text-center">
         <div class="container">
-            <div class="badge bg-primary mb-4 py-2 px-4 rounded-pill" data-aos="fade-down">
-                Kurumsal İletişim Platformu
-            </div>
-            <h1 data-aos="fade-up" data-aos-delay="100">Güçlü Altyapı, <br>Kesintisiz Etkileşim</h1>
-            <p class="lead text-white-50 mb-5 mx-auto" style="max-width: 800px;" data-aos="fade-up" data-aos-delay="200">
-                Mobildev, işletmenizin iletişim ihtiyaçlarını tek bir merkezden yönetmenizi sağlar. 
-                İYS entegrasyonundan akıllı SMS çözümlerine kadar her şey parmaklarınızın ucunda.
+            <span class="badge rounded-pill bg-primary mb-3">Yeni Nesil Teknoloji Ailesi</span>
+            <h1>Tek Bir Çatı Altında <br> Uçtan Uca Çözümler</h1>
+            <p class="text-secondary mx-auto mb-5" style="max-width: 700px;">
+                Mobildev; veri analitiğinden acil durum yönetimine, erişilebilirlikten veri kalitesine kadar işletmenizin tüm dijital ihtiyaçlarını Infomize, Acil.care ve MDQ ile karşılar.
             </p>
-            <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="300">
-                <div class="btn-mobildev" style="cursor: pointer;">Hemen Başlayın</div>
-                <div class="btn btn-outline-light px-5 py-3 rounded-3 fw-bold">Demo İzle</div>
-            </div>
         </div>
     </section>
 
-    <!-- Services / Blog -->
-    <section class="container py-5">
+    <!-- Ana Ürünler (ACCESS & Checker) -->
+    <section class="container mb-5">
         <div class="row g-4">
-            <!-- Blog Card 1 -->
-            <div class="col-lg-6" data-aos="fade-right">
-                <div class="blog-card">
-                    <h3 class="mb-4 fw-bold">İYS ve Mevzuat Uyumu</h3>
-                    <!-- WCAG ERROR: Okunması çok zor, düşük kontrastlı metin -->
-                    <p class="dislexia-text">
-                        İleti Yönetim Sistemi (İYS) süreçlerinde veritabanı temizliği ve izinli pazarlama yönetimi kritik bir rol oynar. 
-                        Bu metin, kontrast hatalarını ve disleksi zorluklarını simüle etmek amacıyla özellikle daraltılmış ve koyulaştırılmıştır. 
-                        Doğru bir WCAG tarayıcısı bu bloğu "Kritik Okunabilirlik Hatası" olarak işaretleyecektir.
+            <div class="col-md-6">
+                <div class="product-card">
+                    <div class="badge-new">POPÜLER</div>
+                    <h3 class="text-info"><i class="fas fa-eye-slash me-2"></i>ACCESS</h3>
+                    <p class="small text-white-50">Web Erişilebilirliği ve WCAG Uyumu</p>
+                    <p class="fail-text-box mt-3">
+                        ACCESS, web sitelerini engelli bireyler (görme, işitme, motor, bilişsel) ve yaşlılar için erişilebilir hale getirir. 
+                        ADHD maskesi, Disleksi fontu ve Nöbet önleyici modları ile kapsayıcı bir deneyim sunar. 
+                        Bu metin, ACCESS yardımı olmadan disleksi bireyler için okunması imkansız bir "nehir" etkisi yaratır.
                     </p>
-                    <div class="mt-4 pt-4 border-top border-secondary opacity-25">
-                        <span class="small">Okuma Süresi: 4 Dakika</span>
-                    </div>
                 </div>
             </div>
-
-            <!-- Blog Card 2 -->
-            <div class="col-lg-6" data-aos="fade-left">
-                <div class="blog-card">
-                    <h3 class="mb-4 fw-bold">Müşteri Sadakati Çözümleri</h3>
-                    <p class="text-white-50">
-                        Sadakat programları ile müşteri yaşam boyu değerini artırın. Akıllı analiz araçları ve 
-                        kişiselleştirilmiş bildirimler sayesinde her zaman bir adım önde olun.
-                    </p>
-                    <div class="mt-4 pt-4 border-top border-secondary opacity-25">
-                        <span class="small">Kategori: Pazarlama</span>
+            <div class="col-md-6">
+                <div class="product-card">
+                    <h3 class="text-success"><i class="fas fa-clipboard-check me-2"></i>Site Checker</h3>
+                    <p class="small text-white-50">Teknik Denetim ve Yasal Uyum Analizi</p>
+                    <div class="mt-4">
+                        <div class="d-flex justify-content-between x-small mb-1">
+                            <span>Mevcut Uyumluluk: A Seviyesi</span>
+                            <span class="text-warning">%42</span>
+                        </div>
+                        <div class="progress" style="height: 6px; background: #111;">
+                            <div class="progress-bar bg-warning" style="width: 42%"></div>
+                        </div>
+                        <p class="x-small text-secondary mt-3">
+                            Kritik hataları tespit eder, WCAG genel skorunu belirler ve yasal zorunluluklara (Cumhurbaşkanlığı Kararnamesi vb.) uyumunuzu raporlar.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Form Section -->
+    <!-- Ekosistem Ürünleri (Infomize, Acil.care, MDQ) -->
     <section class="container py-5">
-        <div class="row justify-content-center" data-aos="zoom-in">
-            <div class="col-lg-8">
-                <div class="blog-card text-center p-5">
-                    <h2 class="mb-5 fw-bold">Bizimle İletişime Geçin</h2>
-                    <form class="row g-4 text-start">
-                        <div class="col-md-6">
-                            <!-- WCAG ERROR: Label eksik (Semantic Error) -->
-                            <input type="text" class="form-control-custom" placeholder="Adınız Soyadınız">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="email" class="form-control-custom" placeholder="E-Posta Adresiniz">
-                        </div>
-                        <div class="col-12">
-                            <div class="btn-mobildev w-100 text-center" style="cursor: pointer;">Mesajı Gönder</div>
-                        </div>
-                    </form>
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Mobildev Çözüm Ailesi</h2>
+        </div>
+        <div class="row g-4">
+            <!-- Infomize -->
+            <div class="col-lg-4">
+                <div class="product-card infomize">
+                    <i class="fas fa-chart-line fa-2x mb-3" style="color: var(--infomize-orange);"></i>
+                    <h4>Infomize</h4>
+                    <p class="small text-secondary">Akıllı Veri Analitiği ve Raporlama</p>
+                    <p class="x-small text-white-50 mt-3">
+                        Büyük veriyi anlamlı içgörülere dönüştürün. İşletmenizin performansını gerçek zamanlı dashboardlar ile takip edin.
+                    </p>
+                    <hr class="opacity-10">
+                    <a href="#" class="x-small text-decoration-none" style="color: var(--infomize-orange);">İncele <i class="fas fa-external-link-alt ms-1"></i></a>
+                </div>
+            </div>
+
+            <!-- Acil.care -->
+            <div class="col-lg-4">
+                <div class="product-card acil">
+                    <i class="fas fa-ambulance fa-2x mb-3" style="color: var(--acil-red);"></i>
+                    <h4>Acil.care</h4>
+                    <p class="small text-secondary">Yeni Nesil Acil Durum Yönetimi</p>
+                    <p class="x-small text-white-50 mt-3">
+                        Kritik anlarda saniyelerin önemi vardır. Acil durum iletişimini ve koordinasyonunu bulut tabanlı platformumuzla yönetin.
+                    </p>
+                    <hr class="opacity-10">
+                    <a href="#" class="x-small text-decoration-none" style="color: var(--acil-red);">İncele <i class="fas fa-external-link-alt ms-1"></i></a>
+                </div>
+            </div>
+
+            <!-- MDQ -->
+            <div class="col-lg-4">
+                <div class="product-card mdq">
+                    <i class="fas fa-database fa-2x mb-3" style="color: var(--mdq-purple);"></i>
+                    <h4>MDQ</h4>
+                    <p class="small text-secondary">Data Quality & Data Cleansing</p>
+                    <p class="x-small text-white-50 mt-3">
+                        Veritabanınızdaki hatalı, mükerrer ve eksik verileri temizleyerek pazarlama verimliliğinizi %40'a kadar artırın.
+                    </p>
+                    <hr class="opacity-10">
+                    <a href="#" class="x-small text-decoration-none" style="color: var(--mdq-purple);">İncele <i class="fas fa-external-link-alt ms-1"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="py-5 border-top border-secondary mt-5 bg-black">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
-                    <h4 class="navbar-brand">MOBILDEV</h4>
-                    <p class="small text-white-50">© 2026 Mobildev İletişim A.Ş.</p>
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-4">
+                    <h5 class="fw-bold">MOBILDEV</h5>
+                    <p class="x-small text-secondary">Dijital İletişim ve Veri Teknolojileri Uzmanı</p>
                 </div>
-                <div class="col-md-8">
-                    <div class="d-flex flex-wrap justify-content-center justify-content-md-end gap-4">
-                        <a href="#" class="footer-link">KVKK Politikası</a>
-                        <a href="#" class="footer-link">Kullanım Koşulları</a>
-                        <a href="#" class="footer-link">Destek Merkezi</a>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3 x-small text-secondary">
+                        <a href="#" class="text-secondary text-decoration-none">Erişilebilirlik</a>
+                        <a href="#" class="text-secondary text-decoration-none">KVKK</a>
+                        <a href="#" class="text-secondary text-decoration-none">Destek</a>
                     </div>
+                    <p class="x-small text-muted mt-3">© 2026 Mobildev İletişim A.Ş. Tüm Hakları Saklıdır.</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script type="text/javascript" src="//acdn.mobildev.in/4xbqnqp78t4ur6f.js" charset="UTF-8"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
-
-        // Mouse hareketiyle arka planı hafifçe oynat (Hafif odak dağıtıcı)
+        // Mouse hareketiyle DEHB için hafif odak dağıtıcı etkileşim
         document.addEventListener('mousemove', (e) => {
+            const blobs = document.querySelectorAll('.floating-blob');
             const x = e.clientX / window.innerWidth;
             const y = e.clientY / window.innerHeight;
-            document.body.style.backgroundPosition = `${x * 50}% ${y * 50}%`;
+            
+            blobs.forEach((blob, index) => {
+                const speed = (index + 1) * 30;
+                blob.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
         });
     </script>
 </body>

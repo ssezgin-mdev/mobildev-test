@@ -2,9 +2,9 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <!-- WCAG CRITICAL ERROR: Zoom kısıtlaması -->
+    <!-- WCAG CRITICAL ERROR: Zoom kısıtlaması simülasyonu -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mobildev</title>
+    <title>Mobildev Ekosistem | ACCESS, Infomize, Acil.care & MDQ</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&family=Space+Grotesk:wght@700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
@@ -18,12 +18,13 @@
             --acil-red: #ff3b3b;
             --mdq-purple: #8e44ad;
             --dark-bg: #030712;
-            --text-invisible: #374151; 
+            --text-invisible: #1f2937; 
             --glass: rgba(255, 255, 255, 0.02);
         }
 
-        /* --- SCRIPT TARAFINDAN KONTROL EDİLEBİLİR GÜVENLİ MOD --- */
-        /* Kendi scriptiniz body'ye 'access-safe-mode' class'ı eklediğinde her şey durur */
+        /* --- GÜVENLİ MOD: FORCE STOP --- */
+        /* Scriptiniz body'ye .access-safe-mode eklediğinde TÜM animasyonları ve filtreleri zorla kapatır */
+        body.access-safe-mode,
         body.access-safe-mode *,
         body.access-safe-mode *::before,
         body.access-safe-mode *::after {
@@ -36,70 +37,51 @@
             word-spacing: normal !important;
             line-height: 1.6 !important;
             color: #e2e8f0 !important;
-            cursor: auto !important;
             background-image: none !important;
         }
         
         body.access-safe-mode {
             background-color: #0b1120 !important;
-            background-image: none !important;
         }
 
-        body.access-safe-mode .nightmare-ticker {
+        body.access-safe-mode .nightmare-ticker,
+        body.access-safe-mode::before {
             display: none !important;
         }
 
-        /* --- KATMANLI TETİKLEYİCİLER (MULTI-TRIGGER) --- */
+        /* --- YUMUŞATILMIŞ UYARICI ÖZELLİKLER --- */
 
-        /* 1. Visual Snow */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-            opacity: 0.1;
-            z-index: 9998;
-            pointer-events: none;
-            animation: noise-shift 0.4s infinite;
+        /* Sarhoş Kaydırma - Açı 0.1'e düşürüldü */
+        @keyframes drunk-tilt {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(0.1deg) scale(1.005); }
         }
 
-        @keyframes noise-shift {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(-1px, 1px); }
-        }
-
-        /* 2. Kromatik Bozulma */
+        /* Renk sapması - Gölgeler küçültüldü */
         @keyframes chromatic-aberration {
-            0% { text-shadow: 1.5px 0 rgba(255,0,0,0.3), -1.5px 0 rgba(0,242,255,0.3); }
-            50% { text-shadow: -1.5px 0 rgba(255,0,0,0.3), 1.5px 0 rgba(0,242,255,0.3); }
-            100% { text-shadow: 1.5px 0 rgba(255,0,0,0.3), -1.5px 0 rgba(0,242,255,0.3); }
+            0% { text-shadow: 0.8px 0 rgba(255,0,0,0.2), -0.8px 0 rgba(0,242,255,0.2); }
+            50% { text-shadow: -0.8px 0 rgba(255,0,0,0.2), 0.8px 0 rgba(0,242,255,0.2); }
+            100% { text-shadow: 0.8px 0 rgba(255,0,0,0.2), -0.8px 0 rgba(0,242,255,0.2); }
         }
 
-        /* 3. Bulanıklık */
-        @keyframes blur-pulse {
-            0% { filter: blur(0px); opacity: 1; }
-            50% { filter: blur(1.2px); opacity: 0.8; }
-            100% { filter: blur(0px); opacity: 1; }
+        /* Harf Titremesi - Değerler 0.5px'e düşürüldü, süre uzatıldı */
+        @keyframes letter-jitter {
+            0%, 100% { letter-spacing: -0.5px; }
+            50% { letter-spacing: 0.5px; }
         }
 
-        /* 4. Titreme */
         @keyframes jitter-soft {
             0% { transform: translate(0, 0); }
-            50% { transform: translate(1px, -1px); }
+            50% { transform: translate(0.5px, -0.5px); }
             100% { transform: translate(0, 0); }
         }
 
-        /* 5. Uyarı Şeridi Animasyonları */
         @keyframes stable-scroll {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
-        
-        @keyframes warning-soft-glow {
-            0%, 100% { background-color: #ff3b3b; color: white; }
-            50% { background-color: #8b0000; color: #ccc; }
-        }
 
+        /* Temel Yapı */
         * { outline: none !important; }
 
         body {
@@ -107,9 +89,28 @@
             background-image: radial-gradient(circle at 50% 50%, #0a1128 0%, #030712 100%);
             color: #f3f4f6;
             font-family: 'Poppins', sans-serif;
-            line-height: 1.1; 
+            line-height: 1.2; 
             overflow-x: hidden;
             padding-top: 35px;
+            /* Ana sayfa animasyonları */
+            animation: drunk-tilt 20s infinite ease-in-out;
+        }
+
+        /* Karlanma Efekti (Daha şeffaf yapıldı) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            z-index: 9998;
+            pointer-events: none;
+            animation: noise-shift 0.6s infinite;
+        }
+
+        @keyframes noise-shift {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(-0.5px, 0.5px); }
         }
 
         .nightmare-ticker {
@@ -124,13 +125,14 @@
             overflow: hidden;
             font-weight: 700;
             font-size: 13px;
+            background-color: var(--acil-red);
+            color: white;
             text-transform: uppercase;
-            animation: warning-soft-glow 2s infinite ease-in-out; 
         }
 
         .ticker-content {
             white-space: nowrap;
-            animation: stable-scroll 12s linear infinite;
+            animation: stable-scroll 15s linear infinite;
         }
 
         /* --- NAVBAR --- */
@@ -148,7 +150,7 @@
             letter-spacing: -2px;
             font-family: 'Space Grotesk', sans-serif;
             color: #fff !important;
-            animation: chromatic-aberration 3s infinite;
+            animation: chromatic-aberration 4s infinite, letter-jitter 15s infinite;
         }
 
         .navbar-brand span { color: var(--mobildev-blue); }
@@ -165,7 +167,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            animation: jitter-soft 2s infinite; 
             cursor: pointer;
         }
 
@@ -179,7 +180,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
-            animation: chromatic-aberration 4s infinite alternate;
+            animation: chromatic-aberration 6s infinite alternate;
         }
 
         /* --- PRODUCT CARDS --- */
@@ -188,21 +189,24 @@
             border: 1px solid rgba(255,255,255,0.05);
             border-radius: 20px;
             padding: 30px;
-            transition: 0.4s;
             height: 100%;
-            animation: blur-pulse 10s infinite;
+            transition: all 0.4s ease;
+        }
+
+        /* Hover durumunda sarsılma yumuşatıldı */
+        .product-card:hover {
+            animation: jitter-soft 0.3s infinite !important;
+            border-color: rgba(255,255,255,0.1);
         }
 
         .fail-text-box {
             font-family: 'Playfair Display', serif;
             color: var(--text-invisible) !important;
             text-align: justify;
-            letter-spacing: -0.5px;
-            word-spacing: -1.5px;
-            font-size: 0.85rem;
-            line-height: 0.95;
+            font-size: 0.9rem;
+            line-height: 1;
             margin-top: 15px;
-            animation: blur-pulse 6s infinite reverse;
+            animation: letter-jitter 20s infinite reverse;
         }
 
         .product-card.infomize { border-top: 3px solid var(--infomize-orange); }
@@ -217,29 +221,14 @@
             filter: blur(120px);
             opacity: 0.1;
             z-index: -1;
-            transition: transform 0.2s ease-out; 
         }
 
-        /* Site Checker */
+        /* Site Checker Data */
         .data-val {
             display: block;
             font-weight: 800;
             font-size: 1.2rem;
             color: var(--access-accent);
-            animation: jitter-soft 3s infinite; 
-        }
-        
-        .checker-data-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        .data-item {
-            background: rgba(255,255,255,0.03);
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
         }
     </style>
 </head>
@@ -248,7 +237,7 @@
     <!-- Uyarı Şeridi -->
     <div class="nightmare-ticker">
         <div class="ticker-content">
-            ⚠️ DİKKAT: ERİŞİLEBİLİRLİK İHLALİ TESPİT EDİLDİ ⚠️ WCAG 2.1 STANDARTLARINA UYUMSUZ İÇERİK ⚠️ ACCESS WIDGET İLE GÜVENLİ MODU AKTİF EDEBİLİRSİNİZ ⚠️ MOBİLDEV ERİŞİLEBİLİRLİK ÇÖZÜMLERİ ⚠️
+            ⚠️ DİKKAT: ERİŞİLEBİLİRLİK İHLALİ TESPİT EDİLDİ ⚠️ WCAG STANDARTLARINA UYUMSUZ İÇERİK ⚠️ ACCESS SCRIPTİ İLE BU HATALARI GİDEREBİLİRSİNİZ ⚠️
         </div>
     </div>
 
@@ -273,7 +262,7 @@
         <div class="container">
             <span class="badge rounded-pill bg-primary mb-3">Yeni Nesil Teknoloji Ailesi</span>
             <h1>Tek Bir Çatı Altında <br> Uçtan Uca Çözümler</h1>
-            <p style="color: #444; font-size: 1.1rem; max-width: 700px; margin: 0 auto 50px;">
+            <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto 50px; opacity: 0.7;">
                 Mobildev; veri analitiğinden acil durum yönetimine, erişilebilirlikten veri kalitesine kadar işletmenizin tüm dijital ihtiyaçlarını Infomize, Acil.care ve MDQ ile karşılar.
             </p>
         </div>
@@ -290,8 +279,7 @@
                         ACCESS, web sitelerini engelli bireyler (görme, işitme, motor, bilişsel) ve yaşlılar için tam erişilebilir hale getirerek dijital dünyadaki engelleri tamamen ortadan kaldırır. 
                         Gelişmiş ADHD maskesi, özel Disleksi fontu ve Nöbet önleyici modları ile her türlü kullanıcıya kapsayıcı ve konforlu bir deneyim sunar. 
                         Bu metin bloğu, ACCESS'in sunduğu profesyonel dokunuşlar ve özel algoritmik düzeltmeler yardımı olmadan disleksi teşhisi konmuş bireyler için takibi zor ve okunması neredeyse imkansız bir "nehir" etkisi yaratmaktadır. 
-                        Yapay zeka destekli altyapısı sayesinde, tek bir satır kodla sitenizi yasal mevzuatlara ve Cumhurbaşkanlığı kararnamelerine tam uyumlu hale getirirken, markanızın değerini ve kullanıcı kitlesini genişletmenize yardımcı olur. 
-                        Erişilebilirlik sadece bir tercih değil, herkesin hakkıdır; ACCESS bu hakkı teknik karmaşa olmadan sağlar.
+                        Yapay zeka destekli altyapısı sayesinde, tek bir satır kodla sitenizi yasal mevzuatlara ve Cumhurbaşkanlığı kararnamelerine tam uyumlu hale getirirken markanızın değerini artırır.
                     </p>
                 </div>
             </div>
@@ -300,28 +288,25 @@
                     <h3 class="text-success"><i class="fas fa-clipboard-check me-2"></i>Site Checker</h3>
                     <p class="small text-secondary">Teknik Denetim ve Analiz Raporu</p>
                     
-                    <div class="checker-data-grid">
-                        <div class="data-item">
+                    <div class="checker-data-grid d-flex gap-3 mt-3">
+                        <div class="data-item flex-fill bg-dark p-3 rounded text-center">
                             <span class="data-val text-danger">74%</span>
-                            <span class="data-label" style="font-size: 9px;">Kritik Hatalar</span>
+                            <span class="small opacity-50">Kritik Hatalar</span>
                         </div>
-                        <div class="data-item">
+                        <div class="data-item flex-fill bg-dark p-3 rounded text-center">
                             <span class="data-val text-warning">28%</span>
-                            <span class="data-label" style="font-size: 9px;">Uyum Oranı</span>
+                            <span class="small opacity-50">Uyum Oranı</span>
                         </div>
                     </div>
 
                     <div class="mt-4">
-                        <div class="d-flex justify-content-between x-small mb-1">
-                            <span style="color: #666; font-size: 11px;">Genel Başarı Skoru:</span>
-                            <span style="color: #ff3b3b; font-size: 11px; font-weight: bold;">POOR (Zayıf)</span>
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="small opacity-50">Genel Başarı Skoru:</span>
+                            <span class="text-danger fw-bold">POOR</span>
                         </div>
-                        <div class="progress" style="height: 4px; background: #111;">
-                            <div class="progress-bar bg-danger" style="width: 28%; animation: blur-pulse 2s infinite;"></div>
+                        <div class="progress" style="height: 6px; background: #222;">
+                            <div class="progress-bar bg-danger" style="width: 28%;"></div>
                         </div>
-                        <p class="mt-3" style="color: #444; font-size: 12px;">
-                            74 adet kritik WCAG ihlali tespit edildi. Siteniz yasal sınırların altında kalmaktadır.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -338,27 +323,21 @@
                 <div class="product-card infomize">
                     <i class="fas fa-chart-line fa-2x mb-3" style="color: var(--infomize-orange);"></i>
                     <h4>Infomize</h4>
-                    <p class="fail-text-box">
-                        Büyük veriyi anlamlı içgörülere dönüştürün. İşletmenizin performansını gerçek zamanlı dashboardlar ile takip edin.
-                    </p>
+                    <p class="fail-text-box">Büyük veriyi anlamlı içgörülere dönüştürün. İşletmenizin performansını gerçek zamanlı dashboardlar ile takip edin.</p>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="product-card acil">
                     <i class="fas fa-ambulance fa-2x mb-3" style="color: var(--acil-red);"></i>
                     <h4>Acil.care</h4>
-                    <p class="fail-text-box">
-                        Kritik anlarda saniyelerin önemi vardır. Acil durum iletişimini platformumuzla yönetin.
-                    </p>
+                    <p class="fail-text-box">Kritik anlarda saniyelerin önemi vardır. Acil durum iletişimini platformumuzla yönetin.</p>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="product-card mdq">
                     <i class="fas fa-database fa-2x mb-3" style="color: var(--mdq-purple);"></i>
                     <h4>MDQ</h4>
-                    <p class="fail-text-box">
-                        Veritabanınızdaki hatalı, mükerrer ve eksik verileri temizleyerek pazarlama verimliliğinizi artırın.
-                    </p>
+                    <p class="fail-text-box">Veritabanınızdaki hatalı, mükerrer ve eksik verileri temizleyerek pazarlama verimliliğinizi artırın.</p>
                 </div>
             </div>
         </div>
@@ -366,14 +345,14 @@
 
     <footer class="py-5 border-top border-secondary mt-5 bg-black">
         <div class="container text-center">
-            <p style="font-size: 9px; color: #222; letter-spacing: 2px;">© 2026 MOBILDEV ILETISIM A.S. TUM HAKLARI SAKLIDIR.</p>
+            <p style="font-size: 10px; opacity: 0.3;">© 2026 MOBILDEV ILETISIM A.S. TUM HAKLARI SAKLIDIR.</p>
         </div>
     </footer>
 
     <script type="text/javascript" src="//acdn.mobildev.in/4xbqnqp78t4ur6f.js" charset="UTF-8"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Arka Plan Hareketi (Safe Mode Kontrolü Dahil)
+        // Arka plan blob hareketi (Sadece Safe Mode kapalıyken)
         document.addEventListener('mousemove', (e) => {
             if(document.body.classList.contains('access-safe-mode')) return;
             
@@ -381,11 +360,10 @@
             const x = (e.clientX / window.innerWidth - 0.5) * 2;
             const y = (e.clientY / window.innerHeight - 0.5) * 2;
             blobs.forEach((blob, index) => {
-                const speed = (index + 1) * 40;
+                const speed = (index + 1) * 20; // Hız düşürüldü
                 blob.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
             });
         });
     </script>
 </body>
 </html>
-
